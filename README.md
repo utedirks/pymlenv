@@ -24,7 +24,7 @@ The following modules are included:
 
 ## Extend
 
-The environment is build from the [requirements.txt file](./requirements.txt). You can clone the repository and change this file to build the environment with your own selection of modules. Please note that the container is started with Jupyter, so if you delete the Jupyter dependency you also need to change the [Dockerfile](./Dockerfile).
+The environment is build from the [requirements.txt file](./requirements.txt). You can clone the repository and change this file to build the environment with your own selection of modules. Please note that the container is started with JupyterLab, so if you delete the JupyterLab dependency you also need to change the [Dockerfile](./Dockerfile).
 
 To manually build your image and start a container, run:
 
