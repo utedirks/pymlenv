@@ -2,13 +2,22 @@
 
 All-in-one data science environment put into a container
 
+[![](https://img.shields.io/github/license/danieldirks/pymlenv)](./LICENSE)
+
 ## Usage
 
 _You need the docker engine accessible as your current user._
 
-Clone the repository, run [start.sh](./start.sh) and open the url shown at the command line.
+Clone the repository, build the image with `docker build -t pymlenv .`, run [start.sh](./start.sh) and open the url shown at the command line.
 
 **WARNING:** Currently there is no persistence, so **DO NOT stop the container until you downloaded all notebooks**.
+
+You can also use the prebuild image, which currently requires logging in.
+
+```
+docker login -u USERNAME -p TOKEN docker.pkg.github.com
+docker run -p 8080:8080 docker.pkg.github.com/danieldirks/pymlenv/pymlenv:latest
+```
 
 ## Features
 
@@ -21,6 +30,8 @@ The following modules are included:
 - [SciPy](https://github.com/scipy/scipy)
 - [Matplotlib](https://github.com/matplotlib/matplotlib)
 - [scikit-learn (sklearn)](https://github.com/scikit-learn/scikit-learn)
+
+Full list: [Dependency graph](https://github.com/danieldirks/pymlenv/network/dependencies)
 
 ## Extend
 
