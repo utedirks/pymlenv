@@ -1,0 +1,23 @@
+name: Docker Image
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Build Image
+        run: docker build -t pymlenv .
+      - name: Tag Versions
+        run: |
+          docker tag pymlenv docker.pkg.github.com/${{ secrets.GITHUB_USERNAME }}/pymlenv/pymlenv:${GITHUB_REF/refs\/tags\//}
+          docker tag pymlenv docker.pkg.github.com/${{ secrets.GITHUB_USERNAME }}/pymlenv/pymlenv:latest
+      - name: Login to Registry
+        run: docker login -u ${{ secrets.GITHUB_USERNAME }} -p ${{ secrets.GITHUB_TOKEN }} docker.pkg.github.com
+      - name: Publish to Registry
+        run: |
+          docker push docker.pkg.github.com/${{ secrets.GITHUB_USERNAME }}/pymlenv/pymlenv:${GITHUB_REF/refs\/tags\//}
+          docker push docker.pkg.github.com/${{ secrets.GITHUB_USERNAME }}/pymlenv/pymlenv:latest
