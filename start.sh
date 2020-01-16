@@ -1,5 +1,9 @@
 echo "Starting ..."
-docker run -d --rm --name pymlenv -p 8080:8080 pymlenv:latest > /dev/null 2>&1
+
+docker ps > /dev/null 2> /dev/null
+es=$?; if [[ $es != 0 ]]; then echo -e "Cannot connect to docker daemon\nExiting"; exit $es; fi
+
+docker run -d --rm --name pymlenv -p 8080:8080 -v $(pwd)/data:/app/data pymlenv:latest > /dev/null 2>&1
 
 TOKEN=
 while [ -z "$TOKEN" ]; do

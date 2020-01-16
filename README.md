@@ -10,13 +10,11 @@ _You need the docker engine accessible as your current user._
 
 Clone the repository, build the image with `docker build -t pymlenv .`, run [start.sh](./start.sh) and open the url shown at the command line.
 
-**WARNING:** Currently there is no persistence, so **DO NOT stop the container until you downloaded all notebooks**.
-
 You can also use the prebuild image, which currently requires logging in.
 
 ```
 docker login -u USERNAME -p TOKEN docker.pkg.github.com
-docker run -p 8080:8080 docker.pkg.github.com/danieldirks/pymlenv/pymlenv:latest
+docker run -p 8080:8080 -v data:/app/data docker.pkg.github.com/danieldirks/pymlenv/pymlenv:latest
 ```
 
 ## Features
@@ -41,5 +39,5 @@ To manually build your image and start a container, run:
 
 ```
 docker build -t pymlenv .
-docker run -p 8080:8080 pymlenv
+docker run -p 8080:8080 -v $(pwd)/data:/app/data pymlenv
 ```
